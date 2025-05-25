@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static' , filename='dashboard.css')}}">
+
+<div class="container mt-5">
+
+    <h2 class="text-center fw-bold text-primary">Personel Takip Sistemi</h2>
+
+
+
+  <div class="row my-4">
+    <!-- Son Eklenen -->
+    <div class="col-md-4">
+        <div class="card text-white bg-info mb-4 shadow h-100">
+            <div class="card-body text-center">
+                <h4>Son Eklenen</h4>
+                {% if son_personel %}
+                    <p class="mb-0" style="font-size: 22px;">{{ son_personel.ad }} {{ son_personel.soyad }}</p>
+                    <small style="font-size: 25px;">{{ son_personel.ise_baslama_tarihi.strftime('%d.%m.%Y') }}</small>
+                {% else %}
+                    <p>Henüz personel eklenmedi</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Toplam Personel -->
+    <div class="col-md-4">
+        <div class="card text-white bg-primary mb-4 shadow h-100">
+            <div class="card-body text-center">
+                <h4>Toplam Personel Sayısı</h4>
+                <p class="display-5">{{ personeller|length }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ortalama Çalışma Süresi -->
+    <div class="col-md-4">
+        <div class="card text-white bg-warning mb-4 shadow h-100">
+            <div class="card-body text-center">
+                <h4>Ortalama Günlük Çalışma Süresi</h4>
+                <p class="display-6">{{ ortalama_sure }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="personel">
+    <div class="table-wrapper mt-4 p-4 rounded shadow bg-light">
+        <div class="mb-3 d-flex justify-content-between">
+            <a href="{{ url_for('ekleme') }}" class="btn btn-success">+ Yeni Personel Ekle</a>
+            <a href="{{ url_for('raporlar') }}" class="btn btn-outline-secondary">📊 Raporlar</a>
+        </div>
+
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Ad</th>
+                    <th>Soyad</th>
+                    <th>Pozisyon</th>
+                    <th>Maaş</th>
+                    <th>İşe Başlama</th>
+                    <th>Giriş - Çıkış</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for personel in personeller %}
+                <tr>
+                    <td>{{ personel.id }}</td>
+                    <td>{{ personel.ad }}</td>
+                    <td>{{ personel.soyad }}</td>
+                    <td>{{ personel.pozisyon }}</td>
+                    <td>{{ personel.maas }} ₺</td>
+                    <td>{{ personel.ise_baslama_tarihi.strftime('%d.%m.%Y') }}</td>
+                    <td>{{ personel.giris_zamani.strftime('%H:%M') }} - {{ personel.cikis_zamani.strftime('%H:%M') }}</td>
+                    <td class="d-flex gap-2">
+                        <a href="{{ url_for('duzenle', personel_id=personel.id) }}" class="btn btn-primary">Düzenle</a>
+                        <form action="{{ url_for('sil', personel_id=personel.id) }}" method="POST">
+                            <button type="submit" class="btn btn-danger">Sil</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+{% endblock %}

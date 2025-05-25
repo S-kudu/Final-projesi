@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='raporlar.css') }}">
+
+<div class="container mt-5">
+    <div class="text-center">
+        <h2 class="fw-bold text-primary">📊 Personel Raporları</h2>
+        <p class="text-muted">Yönetim Paneli - Raporlar</p>
+    </div>
+<div class="rapor">
+    <div class="report-wrapper mt-4 p-4 rounded shadow-lg bg-light">
+        <h4 class="text-success fw-bold">Personel Maaş Ortalaması</h4>
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Ad</th>
+                    <th>Soyad</th>
+                    <th>Pozisyon</th>
+                    <th>Maaş</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for personel in personeller %}
+                <tr>
+                    <td>{{ personel.id }}</td>
+                    <td>{{ personel.ad }}</td>
+                    <td>{{ personel.soyad }}</td>
+                    <td>{{ personel.pozisyon }}</td>
+                    <td>{{ personel.maas }}₺</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="alert alert-info text-center fw-bold">
+            <strong>Ortalama Maaş:</strong> {{ ortalama_maas }}₺
+        </div>
+
+        <h4 class="text-success fw-bold">Pozisyona Göre Çalışan Dağılımı</h4>
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Pozisyon</th>
+                    <th>Çalışan Sayısı</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pozisyon, sayi in pozisyon_dagilimi.items() %}
+                <tr>
+                    <td>{{ pozisyon }}</td>
+                    <td>{{ sayi }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h4 class="text-success fw-bold">İşe Başlama Tarihine Göre Personel</h4>
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Ad</th>
+                    <th>Soyad</th>
+                    <th>Pozisyon</th>
+                    <th>İşe Başlama Tarihi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for personel in sirali_personeller %}
+                <tr>
+                    <td>{{ personel.id }}</td>
+                    <td>{{ personel.ad }}</td>
+                    <td>{{ personel.soyad }}</td>
+                    <td>{{ personel.pozisyon }}</td>
+                    <td>{{ personel.ise_baslama_tarihi }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+{% endblock %}

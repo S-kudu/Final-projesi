@@ -1,0 +1,37 @@
+
+.table-responsive {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.btn-primary, .btn-danger {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.btn-primary:hover, .btn-danger:hover {
+    transform: scale(1.05);
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f1f1f1;
+    transition: 0.3s ease-in-out;
+}
+
+td.d-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.liste{
+    margin-bottom: 350px;
+}

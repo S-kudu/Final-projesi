@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='liste.css') }}">
+<div class="liste">
+<div class="container mt-5">
+    <h3 class="text-center fw-bold text-primary">Personel Listesi</h3>
+    
+    <div class="table-responsive">
+        <table class="table table-striped shadow-lg mt-3">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Ad</th>
+                    <th>Soyad</th>
+                    <th>E-posta</th>
+                    <th>Pozisyon</th>
+                    <th>Maaş</th>
+                    <th>İşe Başlama</th>
+                    <th>Giriş Zamanı</th>
+                    <th>Çıkış Zamanı</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for personel in personeller %}
+                <tr>
+                    <td>{{ personel.id }}</td>
+                    <td>{{ personel.ad }}</td>
+                    <td>{{ personel.soyad }}</td>
+                    <td>{{ personel.email }}</td>
+                    <td>{{ personel.pozisyon }}</td>
+                    <td>{{ personel.maas }}₺</td>
+                    <td>{{ personel.ise_baslama_tarihi }}</td>
+                    <td>{{ personel.giris_zamani }}</td>
+                    <td>{{ personel.cikis_zamani }}</td>
+                    <td class="d-flex gap-2">
+                        <a href="{{ url_for('duzenle', personel_id=personel.id) }}" class="btn btn-primary">Düzenle</a>
+                        <form action="{{ url_for('sil', personel_id=personel.id) }}" method="POST">
+                            <button type="submit" class="btn btn-danger">Sil</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+
+.table-wrapper {
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.table {
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f1f1f1;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-primary, .btn-danger {
+    transition: transform 0.3s ease-in-out;
+}
+
+.btn-primary:hover, .btn-danger:hover {
+    transform: scale(1.05);
+}
+
+
+.personel{
+    margin-bottom:100px;
+}
+

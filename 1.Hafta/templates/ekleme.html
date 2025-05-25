@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static' , filename='ekleme.css')}}">
+
+
+<div class="container d-flex align-items-center justify-content-center mt-5">
+    <div class="form-wrapper shadow-lg p-4 rounded">
+        <h3 class="mb-4 text-center fw-bold text-primary">Yeni Personel Ekle</h3>
+
+        {% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} text-center">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+
+        <form action="ekleme" method="post">
+            <div class="mb-3">
+                <label for="ad" class="form-label">Ad</label>
+                <input type="text" class="form-control rounded-pill" id="ad" name="ad" required>
+            </div>
+            <div class="mb-3">
+                <label for="soyad" class="form-label">Soyad</label>
+                <input type="text" class="form-control rounded-pill" id="soyad" name="soyad" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">E-posta</label>
+                <input type="email" class="form-control rounded-pill" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="pozisyon" class="form-label">Pozisyon</label>
+                <input type="text" class="form-control rounded-pill" id="pozisyon" name="pozisyon" required>
+            </div>
+            <div class="mb-3">
+                <label for="maas" class="form-label">Maaş (₺)</label>
+                <input type="number" class="form-control rounded-pill" id="maas" name="maas" required>
+            </div>
+            <div class="mb-3">
+                <label for="ise_baslama_tarihi" class="form-label">İşe Başlama Tarihi</label>
+                <input type="date" class="form-control rounded-pill" id="ise_baslama_tarihi" name="ise_baslama_tarihi" required>
+            </div>
+            <div class="mb-3">
+                <label for="giris_zamani" class="form-label">Giriş Zamanı</label>
+                <input type="time" class="form-control rounded-pill" id="giris_zamani" name="giris_zamani" required>
+            </div>
+            <div class="mb-3">
+                <label for="cikis_zamani" class="form-label">Çıkış Zamanı</label>
+                <input type="time" class="form-control rounded-pill" id="cikis_zamani" name="cikis_zamani" required>
+            </div>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-success rounded-pill fw-bold shadow-sm">Kaydet</button>
+                <a href="{{ url_for('dashboard') }}" class="btn btn-secondary rounded-pill fw-bold shadow-sm">İptal Et</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %} 
+

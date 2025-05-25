@@ -1,0 +1,30 @@
+
+.form-wrapper {
+    width: 450px;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.form-control {
+    padding: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease-in-out;
+    border: 2px solid transparent;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+.btn {
+    font-size: 1rem;
+    padding: 10px;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
+}
