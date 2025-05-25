@@ -227,10 +227,6 @@ def export_personel_to_json():
         
         print(f"Toplam {len(data)} personel başarıyla {json_path} dosyasına kaydedildi.")
 
-#if __name__ == '__main__':
-    #with app.app_context():
-        #db.create_all()
-    #app.run(debug=True)
 
 import os
 if __name__ == '__main__': 
